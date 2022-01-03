@@ -1,3 +1,5 @@
 /.idea
 6Companies30Days.iml
 /out
+.DS_Store
+/src/.DS_Store
