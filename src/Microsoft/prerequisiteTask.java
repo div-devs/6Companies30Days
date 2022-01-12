@@ -4,7 +4,7 @@ import java.util.*;
 // https://practice.geeksforgeeks.org/problems/prerequisite-tasks/1/
 public class prerequisiteTask {
     public static void main(String[] args) {
-        int N = 4, P = 3;
+        int N = 4;
         int[][] prerequisites = {{1,0},{2,1},{3,2}};
 
         if(isPossible(N, prerequisites)) {
@@ -17,16 +17,16 @@ public class prerequisiteTask {
     }
 
     public static boolean isPossible(int N, int[][] prerequisites) {
-        Map<Integer, Map<Integer, Integer>> adjList = getAdjecencyList(prerequisites, N);
+        Map<Integer, Map<Integer, Integer>> adjList = getAdjacencyList(prerequisites, N);
         LinkedHashSet<Integer> emptyIndices = new LinkedHashSet<>();
-        //O(N)
+
         Integer index = getNodeWithoutDependency(adjList, N);
         if (index == -1) {
             return false;
         }
         emptyIndices.add(index);
 
-        //O(N + P)
+
         while(adjList.size() > 0 && !emptyIndices.isEmpty()) {
             index = emptyIndices.iterator().next();
             emptyIndices.remove(index);
@@ -61,7 +61,7 @@ public class prerequisiteTask {
         }
     }
 
-    private static Map<Integer, Map<Integer, Integer>> getAdjecencyList(int[][] prerequisites, int N) {
+    private static Map<Integer, Map<Integer, Integer>> getAdjacencyList(int[][] prerequisites, int N) {
         Map<Integer, Map<Integer, Integer>> adjList = new HashMap<>();
         for (int i=0; i<N; i++) {
             adjList.put(i, new HashMap<>());
